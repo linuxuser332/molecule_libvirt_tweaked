@@ -72,6 +72,11 @@
                     "title": "Operating system ID",
                     "description": "The libosinfo OS ID of the guest operating system."
                 },
+                "qemu_user": {
+                    "type": "string",
+                    "title": "Qemu user",
+                    "description": "The name of the user which Qemu runs as."
+                },
                 "ssh_user": {
                     "type": "string",
                     "title": "SSH user",
