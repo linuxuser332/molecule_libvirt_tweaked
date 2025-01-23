@@ -15,6 +15,7 @@
     default_disk_file_path: "{{ driver_defaults.disk_file_path | default(undef('Platform disk_file_path must be specified')) }}"
     default_os_id: "{{ driver_defaults.os_id | default(undef('Platform os_id must be specified')) }}"
     default_ssh_user: "{{ driver_defaults.ssh_user | default(undef('Platform ssh_user must be specified')) }}"
+    default_qemu_user: "{{ driver_defaults.qemu_user | default(undef('Platform qemu_user must be specified')) }}"
     default_ram_mib: "{{ driver_defaults.ram_mib | default(undef('Platform ram_mib must be specified')) }}"
     default_vcpus: "{{ driver_defaults.vcpus | default(undef('Platform vcpus must be specified')) }}"
     default_disk_size: "{{ driver_defaults.disk_size | default(undef()) }}"
@@ -22,6 +23,7 @@
     platform_disk_file_path: "{{ item.disk_file_path | default(default_disk_file_path) }}"
     platform_os_id: "{{ item.os_id | default(default_os_id) }}"
     platform_ssh_user: "{{ item.ssh_user | default(default_ssh_user) }}"
+    platform_qemu_user: "{{ item.qemu_user | default(default_qemu_user) }}"
     platform_ram_mib: "{{ item.ram_mib | default(default_ram_mib) }}"
     platform_vcpus: "{{ item.vcpus | default(default_vcpus) }}"
     platform_disk_size: "{{ item.disk_size | default(default_disk_size) }}"
@@ -37,7 +39,7 @@
     - name: Grant libvirt-qemu search permission on VMs dir
       ansible.posix.acl:
         path: "/{{ vms_dir.split('/')[1 : index + (lookup('ansible.builtin.env', 'HOME').split('/') | length)] | join('/') }}"
-        entity: "{{ molecule_yml.qemu_user }}"
+        entity: "{{ platform_qemu_user }}"
         etype: user
         permissions: x
         state: present
@@ -56,7 +58,7 @@
     - name: Grant libvirt-qemu search permission on VM directory
       ansible.posix.acl:
         path: "{{ vms_dir }}/{{ item.name }}"
-        entity: "{{ molecule_yml.qemu_user }}"
+        entity: "{{ platform_qemu_uer }}"
         etype: user
         permissions: x
         state: present
