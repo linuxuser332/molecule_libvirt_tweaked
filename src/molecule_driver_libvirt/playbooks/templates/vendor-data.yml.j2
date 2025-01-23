@@ -1,0 +1,6 @@
+#cloud-config
+user:
+  name: {{ ssh_user }}
+  gecos: {{ ssh_user | capitalize }}
+  ssh_authorized_keys:
+    - {{ ssh_authorized_key }}
