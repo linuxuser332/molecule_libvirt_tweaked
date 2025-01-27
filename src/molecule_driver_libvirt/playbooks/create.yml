@@ -37,7 +37,7 @@
 
     - name: Override domain_xml for RedHat 9 based systems
       set_fact:
-        domain_xml: "redhat9.xml"
+        domain_xml: "redhat9.xml.j2"
       when: 
         - ansible_os_family == 'RedHat'
         - ansible_distribution_major_version | int == 9
