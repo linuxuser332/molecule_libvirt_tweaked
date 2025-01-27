@@ -147,6 +147,7 @@
         domain_memory_mib: "{{ platform_ram_mib }}"
         domain_vcpus: "{{ platform_vcpus }}"
         domain_os_type_arch: "{{ ansible_architecture }}"
+        qemu_binary: "{{ platform_qemu_binary }}"
         domain_os_type_machine: q35
         domain_disks:
           - type: file
