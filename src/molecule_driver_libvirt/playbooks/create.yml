@@ -30,6 +30,18 @@
     platform_vcpus: "{{ item.vcpus | default(default_vcpus) }}"
     platform_disk_size: "{{ item.disk_size | default(default_disk_size) }}"
   tasks:
+
+    - name: Set default domain_xml to use
+      set_fact:
+        domain_xml: "domain.xml.j2"
+
+    - name: Override domain_xml for RedHat 9 based systems
+      set_fact:
+        domain_xml: "redhat9.xml"
+      when: 
+        - ansible_os_family == 'RedHat'
+        - ansible_distribution_major_version | int == 9
+
     - name: Create VMs directory
       ansible.builtin.file:
         path: "{{ vms_dir }}"
@@ -140,7 +152,7 @@
       community.libvirt.virt:
         uri: "{{ libvirt_uri }}"
         command: define
-        xml: "{{ lookup('template', 'domain.xml.j2') }}"
+        xml: "{{ lookup('template', domain_xml) }}"
       vars:
         domain_name: "{{ molecule_state.run_uuid }}_{{ item.name }}"
         domain_metadata_os_id: "{{ platform_os_id }}"
