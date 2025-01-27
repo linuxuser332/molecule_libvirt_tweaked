@@ -77,6 +77,11 @@
                     "title": "Qemu user",
                     "description": "The name of the user which Qemu runs as."
                 },
+                "qemu_binary": {
+                    "type": "string",
+                    "title": "Qemu binary to use",
+                    "description": "Full path to the qemu binary."
+                },
                 "ssh_user": {
                     "type": "string",
                     "title": "SSH user",
