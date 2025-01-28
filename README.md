@@ -16,7 +16,7 @@ A driver for
 ### RockyLinux 9 Setup
 ```bash
 sudo dnf config-manager --set-enabled crb
-sudo dnf install -y python3.12 python3.12-devel git libvirt-daemon-kvm libvirt-devel qemu-kvm gcc 
+sudo dnf install -y python3.12 python3.12-devel git libvirt-daemon-kvm libvirt-devel qemu-kvm gcc xorriso
 
 python3.12 -m venv .venv
 source .venv/bin/activate
