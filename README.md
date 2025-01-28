@@ -13,7 +13,27 @@ A driver for
 * [QEMU](https://www.qemu.org/)
 * [xorriso](https://www.gnu.org/software/xorriso/)
 
-### Ubuntu 24.04 Set Up
+### RockyLinux 9 Setup
+```bash
+sudo dnf config-manager --set-enabled crb
+sudo dnf install -y \
+ python3.12 \
+ python3.12-devel \
+ git \
+ libvirt-daemon-kvm \
+ libvirt-devel \
+ qemu-kvm \
+ gcc 
+
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install git+https://github.com/linuxuser332/molecule_libvirt_tweaked ansible-lint
+molecule --version
+```
+
+
+
+### Ubuntu 24.04 Setup
 
 ```bash
 sudo apt install -y \
@@ -28,7 +48,7 @@ sudo apt install -y \
 
 python3.12 -m venv .venv
 source .venv/bin/activate
-pip install git+https://github.com/dtmo/molecule_driver_libvirt.git ansible-lint
+pip install git+https://github.com/linuxuser332/molecule_libvirt_tweaked ansible-lint
 molecule --version
 ```
 
